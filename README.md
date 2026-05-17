@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div align="center">
   <a href="https://iutparis-seine.u-paris.fr">
     <img src="https://medias.podcastics.com/podcastics/podcasts/artwork/universite-paris-cite.png.23d93fd89c820e5e702963c782b2214f.png" alt="Logo" width="80" height="80">
