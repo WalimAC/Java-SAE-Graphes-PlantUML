@@ -18,7 +18,7 @@
 ---
 
 ##  ℹ️ | Organisations fichier 
-* Le projet complet et fonctionnel se situe entièrement dans le dossier `Sprint final`. Le dossier `Sprint 1` contient uniquement la première partie de la SAE (réalisée en avril). Pour tester l'application et lancer les tests de recette, veuillez utiliser les fichiers du dossier `Sprint Final`.
+* Le projet complet et fonctionnel se situe entièrement dans le dossier `Sprint final`. Le dossier `Sprint 1` contient uniquement la première partie de la SAE (réalisée en avril). **Le sprint 1 a bien été validé et rendu dans les temps, ce que vous pouvez vérifier directement dans le tout premier commit du dépôt.** Pour tester l'application et lancer les tests de recette, veuillez utiliser les fichiers du dossier `Sprint Final`.
 
 ## 👥 | Équipe & Groupe de TP
 * **Groupe de TP ( All ):** TP111
