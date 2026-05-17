@@ -8,20 +8,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Tests JUnit 5 pour {@link GrapheListeAdjacence}.
- *
- * Chaque méthode non triviale de l'interface {@link IGraphe} possède au moins
- * deux tests distincts couvrant un cas normal et un cas limite.
- *
- * Le graphe utilisé dans plusieurs tests représente le diagramme chenille :
- * <pre>
- *   AppliChenille --«create»--> Chenille
- *   Chenille -----------------> Anneau
- *   Chenille -----------------> Tete
- *   Tete ---------------------> Anneau
- * </pre>
- */
 @DisplayName("Tests – graphes.GrapheListeAdjacence")
 class GrapheListeAdjacenceTest {
 
@@ -31,10 +17,6 @@ class GrapheListeAdjacenceTest {
     void setUp() {
         graphe = new GrapheListeAdjacence();
     }
-
-    // =========================================================================
-    // ajouterSommet / contientSommet / getNombreSommets
-    // =========================================================================
 
     @Test
     @DisplayName("ajouterSommet : un nouveau sommet est bien présent")
@@ -63,9 +45,6 @@ class GrapheListeAdjacenceTest {
         assertThrows(IllegalArgumentException.class, () -> graphe.ajouterSommet("   "));
     }
 
-    // =========================================================================
-    // supprimerSommet
-    // =========================================================================
 
     @Test
     @DisplayName("supprimerSommet : le sommet n'est plus présent après suppression")
@@ -83,9 +62,7 @@ class GrapheListeAdjacenceTest {
 
         graphe.supprimerSommet("chenille.Chenille");
 
-        // L'arête sortante de Chenille n'existe plus
         assertFalse(graphe.contientArete("chenille.Chenille", "chenille.Anneau"));
-        // L'arête entrante vers Chenille n'existe plus
         assertFalse(graphe.contientArete("appli.AppliChenille", "chenille.Chenille"));
     }
 
@@ -93,13 +70,9 @@ class GrapheListeAdjacenceTest {
     @DisplayName("supprimerSommet : sans effet si le sommet est inconnu")
     void supprimerSommet_sommetInconnu_sansEffet() {
         graphe.ajouterSommet("chenille.Anneau");
-        graphe.supprimerSommet("sommet.Inexistant"); // ne doit pas lever d'exception
+        graphe.supprimerSommet("sommet.Inexistant"); 
         assertEquals(1, graphe.getNombreSommets());
     }
-
-    // =========================================================================
-    // getSommets
-    // =========================================================================
 
     @Test
     @DisplayName("getSommets : retourne tous les sommets ajoutés")
@@ -119,9 +92,6 @@ class GrapheListeAdjacenceTest {
         assertTrue(graphe.getSommets().isEmpty());
     }
 
-    // =========================================================================
-    // ajouterArete / contientArete / getNombreAretes
-    // =========================================================================
 
     @Test
     @DisplayName("ajouterArete : arête avec étiquette correctement ajoutée")
@@ -154,10 +124,6 @@ class GrapheListeAdjacenceTest {
         assertEquals(1, graphe.getNombreAretes());
     }
 
-    // =========================================================================
-    // supprimerArete
-    // =========================================================================
-
     @Test
     @DisplayName("supprimerArete : l'arête n'existe plus après suppression")
     void supprimerArete_areteExistante_plusPresente() {
@@ -184,11 +150,7 @@ class GrapheListeAdjacenceTest {
         graphe.ajouterSommet("chenille.Anneau");
         assertDoesNotThrow(() -> graphe.supprimerArete("chenille.Anneau", "chenille.Tete"));
     }
-
-    // =========================================================================
-    // getEtiquette
-    // =========================================================================
-
+    
     @Test
     @DisplayName("getEtiquette : retourne la bonne étiquette")
     void getEtiquette_areteAvecEtiquette_retourneEtiquette() {
@@ -209,10 +171,6 @@ class GrapheListeAdjacenceTest {
         graphe.ajouterSommet("chenille.Anneau");
         assertNull(graphe.getEtiquette("chenille.Anneau", "chenille.Tete"));
     }
-
-    // =========================================================================
-    // getSuccesseurs
-    // =========================================================================
 
     @Test
     @DisplayName("getSuccesseurs : retourne les bons successeurs")
@@ -238,10 +196,6 @@ class GrapheListeAdjacenceTest {
         assertTrue(graphe.getSuccesseurs("inconnu.Classe").isEmpty());
     }
 
-    // =========================================================================
-    // getPredecesseurs
-    // =========================================================================
-
     @Test
     @DisplayName("getPredecesseurs : retourne les bons prédécesseurs")
     void getPredecesseurs_sommetAvecPredecesseurs_retourneListe() {
@@ -264,15 +218,10 @@ class GrapheListeAdjacenceTest {
     @DisplayName("getPredecesseurs : le graphe est bien orienté (non symétrique)")
     void getPredecesseurs_orientationRespectee() {
         graphe.ajouterArete("appli.AppliChenille", "chenille.Chenille", "create");
-        // AppliChenille n'a pas AppliChenille comme prédécesseur de Chenille
         assertFalse(graphe.getPredecesseurs("appli.AppliChenille")
                 .contains("chenille.Chenille"));
     }
-
-    // =========================================================================
-    // getNombreSommets / getNombreAretes
-    // =========================================================================
-
+    
     @Test
     @DisplayName("getNombreSommets : compte correct sur le graphe chenille complet")
     void getNombreSommets_grapheChenille_retourneQuatre() {
@@ -287,15 +236,6 @@ class GrapheListeAdjacenceTest {
         assertEquals(4, graphe.getNombreAretes());
     }
 
-    // =========================================================================
-    // Helpers
-    // =========================================================================
-
-    /**
-     * Construit le graphe de dépendances du diagramme chenille :
-     * AppliChenille --«create»--> Chenille --> Anneau
-     *                                      --> Tete --> Anneau
-     */
     private void construireGrapheChenille() {
         graphe.ajouterArete("appli.AppliChenille", "chenille.Chenille", "create");
         graphe.ajouterArete("chenille.Chenille", "chenille.Anneau", null);
