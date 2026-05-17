@@ -7,7 +7,6 @@ public class GrapheMatriceAdjacence implements IGraphe {
     private String[][] matrice = new String[100][100];
     private int nbS = 0;
 
-    // Cette méthode règle ton échec sur "ajouterSommet"
     private void validerSommet(String s) {
         if (s == null || s.trim().isEmpty()) {
             throw new IllegalArgumentException("Le nom du sommet ne peut pas être null ou vide");
@@ -16,7 +15,7 @@ public class GrapheMatriceAdjacence implements IGraphe {
 
     @Override
     public void ajouterSommet(String e) {
-        validerSommet(e); // Si e est vide, ça lance l'erreur attendue par le test
+        validerSommet(e); 
         if (!sommetsIndex.containsKey(e)) {
             sommetsIndex.put(e, nbS++);
         }
@@ -26,8 +25,6 @@ public class GrapheMatriceAdjacence implements IGraphe {
     public void ajouterArete(String src, String dest, String lib) {
         ajouterSommet(src);
         ajouterSommet(dest);
-        // On récupère les indices et on remplit la matrice
-        // (lib == null) ? "" : lib  permet de ne pas avoir de valeur null dans la matrice
         matrice[sommetsIndex.get(src)][sommetsIndex.get(dest)] = (lib == null) ? "" : lib;
     }
 
