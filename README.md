@@ -41,7 +41,7 @@ Voici le bilan des fonctionnalités implémentées :
 
 ---
 
-## 🛠️ | Technologies & IDE utilisés
+## 🛠️ | Langage & IDE utilisés
 
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968282.png" alt="Logo Java" width="40" height="40"> &nbsp;
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/3840px-IntelliJ_IDEA_Icon.svg.png" alt="Logo IntelliJ" width="40" height="40">
