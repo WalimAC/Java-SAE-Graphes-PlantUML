@@ -12,7 +12,6 @@ public class GrapheListeAdjacence implements IGraphe {
         Arete(String d, String e) { this.destination = d; this.etiquette = e; }
     }
 
-    // --- CETTE MÉTHODE RÉGLE L'ERREUR "IllegalArgumentException" ---
     private void validerSommet(String s) {
         if (s == null || s.trim().isEmpty()) {
             throw new IllegalArgumentException("Le sommet ne peut pas être vide");
@@ -21,7 +20,7 @@ public class GrapheListeAdjacence implements IGraphe {
 
     @Override
     public void ajouterSommet(String e) {
-        validerSommet(e); // Si c'est vide, le test sera content (Exception lancée)
+        validerSommet(e); 
         if (!adjacence.containsKey(e)) {
             adjacence.put(e, new ArrayList<>());
         }
@@ -32,16 +31,13 @@ public class GrapheListeAdjacence implements IGraphe {
         ajouterSommet(src);
         ajouterSommet(dest);
 
-        // --- CETTE BOUCLE RÉGLE L'ERREUR "expected: <use> but was: <create>" ---
-        // On cherche si l'arête existe déjà pour mettre à jour son étiquette
         for (Arete a : adjacence.get(src)) {
             if (a.destination.equals(dest)) {
-                a.etiquette = lib; // Mise à jour de l'étiquette (ex: de create vers use)
-                return; // On s'arrête là
+                a.etiquette = lib; 
+                return; 
             }
         }
 
-        // Si elle n'existait pas, on l'ajoute normalement
         adjacence.get(src).add(new Arete(dest, lib));
     }
 
