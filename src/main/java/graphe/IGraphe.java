@@ -11,8 +11,8 @@ public interface IGraphe {
     void supprimerArete(String source, String destination);
     boolean contientArete(String source, String destination);
     String getEtiquette(String source, String destination);
-    List<String> getSuccesseurs(String sommet); // <-- Doit être List
-    List<String> getPredecesseurs(String sommet); // <-- Doit être List
+    List<String> getSuccesseurs(String sommet); 
+    List<String> getPredecesseurs(String sommet); 
     int getNombreSommets();
     int getNombreAretes();
 }
